@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant BEAC Moundou</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            /* padding: 20px; */
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #000;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("../css/beac.jpeg") center center / cover no-repeat;
+            filter: blur(10px);
+            z-index: -1;
+            opacity: 0.8;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            margin: auto;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            color: #007bff;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            line-height: 0.8;
+            /* font-size: 0.4rem; */
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            width: 100vw;
+            z-index: 1;
+            display: flex;
+            flex-direction:row;
+            justify-content: space-between;
+            /* align-items: center; */
+            padding-bottom: 25px;
+        }
+        .footer p {
+            margin: 5px;
+        }
+        .footer-section {
+            /* font-size: 0.3em; */
+            margin-bottom: 10px;
+            margin-right: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="container">
+        <h1>Bienvenue au Restaurant BEAC Moundou</h1>
+        <div class="content">
+            <?php
+            session_start();
+            if (isset($_SESSION['user_id'])) {
+                echo "<p><a href='deconnexion.php' class='btn'>Se déconnecter</a></p>";
+                
+                // Liens pour les employés et les super utilisateurs
+                if ($_SESSION['role'] == 'employe' || $_SESSION['role'] == 'super_utilisateur') {
+                    echo "<p><a href='menu.php' class='btn'>Consulter le Menu</a></p>";
+                    echo "<p><a href='commandes.php' class='btn'>Voir les Commandes du Jour</a></p>";
+                }
+                
+                // Lien supplémentaire pour les super utilisateurs
+                if ($_SESSION['role'] == 'super_utilisateur') {
+                    echo "<p><a href='gestion_utilisateurs.php' class='btn'>Gérer les Utilisateurs</a></p>";
+                }
+            } else {
+                echo "<p><a href='connexion.php' class='btn'>Se connecter</a></p>";
+                echo "<p><a href='inscription.php' class='btn'>S'inscrire</a></p>";
+            }
+            ?>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-section">
+            <p>Restaurant BEAC Moundou</p>
+            <p>1234 Rue de la Galette, 5678 Moundou</p>
+            <p>Tél : 0123-456-7890</p>
+            <p>Email : support@beacmoundou.com</p>
+            <p>Ouvert du lundi au vendredi de 9h à 22h</p>
+            <p>Ouvert le samedi et dimanche de 10h à 21h</p>
+        </div>
+        <div class="footer-section">
+            <p>Restaurant BEAC Moundou</p>
+            <p>1234 Rue de la Galette, 5678 Moundou</p>
+            <p>Tél : 0123-456-7890</p>
+            <p>Email : support@beacmoundou.com</p>
+            <p>Ouvert du lundi au vendredi de 9h à 22h</p>
+            <p>Ouvert le samedi et dimanche de 10h à 21h</p>
+        </div>
+        
+        <!-- <div class="footer-section">
+        </div> -->
+        <div class="footer-section">
+            <p>Commandez en ligne ou en personne à notre restaurant.</p>
+            <p>&copy; 2021 BEAC Moundou - Tous droits réservés.</p>
+        </div>
+        <div class="footer-section">
+            <p>Commandez en ligne ou en personne à notre restaurant.</p>
+            <p>&copy; 2021 BEAC Moundou - Tous droits réservés.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant BEAC Moundou</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #000;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("../css/beac.jpeg") center center / cover no-repeat;
+            filter: blur(10px);
+            z-index: -1;
+            opacity: 0.8;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            margin: auto;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            color: #007bff;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 1;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="container">
+        <h1>Bienvenue au Restaurant BEAC Moundou</h1>
+        <div class="content">
+            <?php
+            session_start();
+            if (isset($_SESSION['user_id'])) {
+                echo "<p><a href='deconnexion.php' class='btn'>Se déconnecter</a></p>";
+                
+                // Liens pour les employés et les super utilisateurs
+                if ($_SESSION['role'] == 'employe' || $_SESSION['role'] == 'super_utilisateur') {
+                    echo "<p><a href='menu.php' class='btn'>Consulter le Menu</a></p>";
+                    echo "<p><a href='commandes.php' class='btn'>Voir les Commandes du Jour</a></p>";
+                }
+                
+                // Lien supplémentaire pour les super utilisateurs
+                if ($_SESSION['role'] == 'super_utilisateur') {
+                    echo "<p><a href='gestion_utilisateurs.php' class='btn'>Gérer les Utilisateurs</a></p>";
+                }
+            } else {
+                echo "<p><a href='connexion.php' class='btn'>Se connecter</a></p>";
+                echo "<p><a href='inscription.php' class='btn'>S'inscrire</a></p>";
+            }
+            ?>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Restaurant BEAC Moundou</p>
+        <p>1234 Rue de la Galette, 5678 Moundou</p>
+        <p>Tél : 0123-456-7890</p>
+        <p>Email : support@beacmoundou.com</p>
+        <p>Ouvert du lundi au vendredi de 9h à 22h</p>
+        <p>Ouvert le samedi et dimanche de 10h à 21h</p>
+        <p>Commandez en ligne ou en personne à notre restaurant.</p>
+        <p>&copy; 2021 BEAC Moundou - Tous droits réservés.</p>
+    </div>
+</body>
+</html>
